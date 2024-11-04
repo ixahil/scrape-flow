@@ -1,5 +1,6 @@
 import { CreateWorkflowAction } from "@/actions/workflows/create-workflow";
 import { DeleteWorkflow } from "@/actions/workflows/delete-workflow";
+import { UpdateWorkflow } from "@/actions/workflows/update-workflow";
 import { MutationFunction, useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -28,6 +29,18 @@ export const useDeleteWorkflow = () => {
     },
     onError: () => {
       toast.error("Failed to delete a workflow", { id: "mutation" });
+    },
+  });
+};
+
+export const useUpdateWorkflow = () => {
+  return useMutation({
+    mutationFn: UpdateWorkflow,
+    onSuccess: () => {
+      toast.success("Workflow updated!", { id: "mutation" });
+    },
+    onError: () => {
+      toast.error("Failed to update a workflow", { id: "mutation" });
     },
   });
 };
